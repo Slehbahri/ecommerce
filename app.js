@@ -5,10 +5,15 @@ const mongoose=require("mongoose");
 const categorieRouter=require("./routes/categorie.route");
 const scategorieRouter = require("./routes/scategorie.route");
 const articleRouter = require("./routes/article.route");
+const cors = require('cors');
+
 
 dotenv.config();
 //middleware
 app.use(express.json());
+app.use(cors({
+    origin: '*'
+}));
 app.get("/", (req, res) => {
     res.send("bienvenue dans notre site web ")
 })
@@ -31,4 +36,9 @@ app.use("/api/scategories",scategorieRouter)
 app.use("/api/article",articleRouter)
 app.listen(process.env.PORT)
 console.log("application run at port "+process.env.PORT);
+
+
+
+
+
 module.exports = app;
